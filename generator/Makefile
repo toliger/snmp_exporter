@@ -60,13 +60,12 @@ UBNT_AIROS_OLD_URL:= https://raw.githubusercontent.com/pgmillon/observium/refs/h
 UBNT_AIRFIBER_URL := https://dl.ubnt.com/firmwares/airfiber5X/v4.1.0/UBNT-MIB.txt
 UBNT_DL_URL       := http://dl.ubnt-ut.com/snmp
 RARITAN_URL       := https://cdn.raritan.com/download/PX/v1.5.20/PDU-MIB.txt
-RARITAN2_URL      := https://cdn1.raritan.com/download/src-g2/4.0.20/PDU2_MIB_4.0.20_49038.txt
+RARITAN2_URL      := https://cdn1.raritan.com/download/pdu-g2/4.3.0/PDU2_MIB_4.3.0_51180.txt
 INFRAPOWER_URL    := https://www.austin-hughes.com/wp-content/uploads/2021/05/IPD-03-S-MIB.zip
 LIEBERT_URL       := https://www.vertiv.com/globalassets/documents/software/monitoring/lgpmib-win_rev16_299461_0.zip
 READYNAS_URL      := https://www.downloads.netgear.com/files/ReadyNAS/READYNAS-MIB.txt
 READYDATAOS_URL   := https://www.downloads.netgear.com/files/GDC/RD5200/READYDATA_MIB.zip
 SOPHOS_XG_URL     := https://docs.sophos.com/nsg/sophos-firewall/MIB/SOPHOS-XG-MIB.zip
-POWERCOM_URL      := https://www.upspowercom.com/pcm-img/Card-DA807/Upsmate_PCM.mib
 TPLINK_DDM        := https://static.tp-link.com/upload/software/2024/202402/20240229/L2-tplinkMibs.zip
 CISCO_CUCS_URL    := https://raw.githubusercontent.com/cisco/cisco-mibs/refs/heads/main/ucs-mibs
 CISCO_CUCS_URL_v2 := https://raw.githubusercontent.com/cisco/cisco-mibs/refs/heads/main/v2
@@ -175,7 +174,6 @@ mibs: \
   $(MIBDIR)/CyberPower.MIB \
   $(MIBDIR)/EAP.MIB \
   $(MIBDIR)/EAP-Client.MIB \
-  $(MIBDIR)/powercom \
   $(MIBDIR)/.cisco_imc \
   $(MIBDIR)/.cisco-device \
   $(MIBDIR)/FROGFOOT-RESOURCES-MIB \
@@ -449,10 +447,6 @@ $(MIBDIR)/readydataos:
 	@unzip -j -d $(MIBDIR) $(TMP) READYDATAOS-MIB.txt
 	@mv -v $(MIBDIR)/READYDATAOS-MIB.txt $(MIBDIR)/readydataos
 	@rm -v $(TMP)
-
-$(MIBDIR)/powercom:
-	@echo ">> Downloading powercom"
-	@curl $(CURL_OPTS) -o $(MIBDIR)/powercom "$(POWERCOM_URL)"
 
 $(MIBDIR)/.cisco_imc:
 	@echo ">> Downloading Cisco UCS"
