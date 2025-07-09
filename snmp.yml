@@ -36658,6 +36658,7 @@ modules:
     - 1.3.6.1.4.1.13742.4.1.20.2.1.7
     - 1.3.6.1.4.1.13742.4.1.20.2.1.8
     - 1.3.6.1.4.1.13742.4.1.20.2.1.9
+    - 1.3.6.1.4.1.13742.6.3.5.3.1.3
     - 1.3.6.1.4.1.13742.6.5.4.3.1.6
     - 1.3.6.1.4.1.13742.6.5.5.3.1
     get:
@@ -36775,6 +36776,22 @@ modules:
       type: gauge
       help: The value for the unit's CPU temperature sensor in tenth degrees celsius.
         - 1.3.6.1.4.1.13742.4.1.3.1.5
+    - name: outletName
+      oid: 1.3.6.1.4.1.13742.6.3.5.3.1.3
+      type: DisplayString
+      help: The user-defined name. - 1.3.6.1.4.1.13742.6.3.5.3.1.3
+      indexes:
+      - labelname: pduId
+        type: gauge
+      - labelname: outletId
+        type: gauge
+      lookups:
+      - labels:
+        - pduId
+        - outletId
+        labelname: outletName
+        oid: 1.3.6.1.4.1.13742.6.3.5.3.1.3
+        type: DisplayString
     - name: measurementsOutletSensorSignedValue
       oid: 1.3.6.1.4.1.13742.6.5.4.3.1.6
       type: gauge
@@ -36868,6 +36885,13 @@ modules:
           79: batteryLevel
           80: installFaultStatus
           81: transferSwitchOutputStatus
+      lookups:
+      - labels:
+        - pduId
+        - outletId
+        labelname: outletName
+        oid: 1.3.6.1.4.1.13742.6.3.5.3.1.3
+        type: DisplayString
     - name: measurementsExternalSensorIsAvailable
       oid: 1.3.6.1.4.1.13742.6.5.5.3.1.2
       type: gauge
